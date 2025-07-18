@@ -1,0 +1,8 @@
+-- delete from member;
+-- ALTER TABLE member ALTER COLUMN id RESTART WITH 1;
+-- 만약 name만 전달해서 아이디는  자동으로 올리는 것 사용할때에는 DB 초기화가 필요
+-- 그래서 member 싹 지우고 아이디도 다시 1부터 시작하게 리셋 시킨것
+
+INSERT INTO member (id, name) VALUES (1, 'A');
+INSERT INTO member (id, name) VALUES (2, 'B');
+INSERT INTO member (id, name) VALUES (3, 'C');
