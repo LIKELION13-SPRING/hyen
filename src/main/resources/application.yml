@@ -6,17 +6,36 @@
 #        format_sql: true
 #    defer-datasource-initialization: true
 
+#spring:
+#  sql:
+#    init:
+#      mode: always
+#  application:
+#    name: springboot-developer
+#  datasource:
+#    url: jdbc:h2:mem:test
+#    driver-class-name: org.h2.Driver
+##    username: hyen #id
+##    password: 1080 #pw
+#
+#  h2:
+#    console:
+#      enabled: true
+#      path: /h2-console
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: create
+#    properties:
+#      hibernate:
+#        format_sql: true
+#        show_sql: true
+#    database-platform: org.hibernate.dialect.H2Dialect
+
 spring:
-  sql:
-    init:
-      mode: always
-  application:
-    name: springboot-developer
+
   datasource:
     url: jdbc:h2:mem:test
-    driver-class-name: org.h2.Driver
-#    username: hyen #id
-#    password: 1080 #pw
 
   h2:
     console:
@@ -25,10 +44,19 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update  # JPA가 테이블을 먼저 생성
+    defer-datasource-initialization: true  # data.sql 실행을 JPA 이후로 지연
     properties:
       hibernate:
         format_sql: true
         show_sql: true
     database-platform: org.hibernate.dialect.H2Dialect
 
+  sql:
+    init:
+      mode: always
+      encoding: UTF-8
+
+# sql.init.mode: always => JPA가 테이블 만든 다음에 data.sql을 실행하게 해줌
+# 정확히는 무조건 실행하되 순서를 맞게!
+# 이 설정이 없으면 data.sql이 실행되고 JPA 테이블이 생성돼서 오류가 알 수 있음
